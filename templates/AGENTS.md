@@ -1,6 +1,6 @@
 # AGENTS.md
 
-> Codex와 Claude Code가 함께 읽는 작업 지침. CLAUDE.md는 이 파일을 가리킨다.
+> Codex와 Claude Code가 함께 읽는 작업 지침. CLAUDE.md가 `@AGENTS.md`로 이 파일을 불러온다.
 > 빈칸(___)은 담당자 서면 합의 후 직접 채운다.
 
 ## 목표

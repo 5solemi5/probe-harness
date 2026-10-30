@@ -5,10 +5,22 @@ H="$(cd "$(dirname "$0")" && pwd)"
 copy() {  # copy <src> <dst>
   if [ -e "$2" ]; then echo "  skip  $2 (이미 있음)"; else mkdir -p "$(dirname "$2")"; cp -r "$1" "$2"; echo "  add   $2"; fi
 }
+for f in AGENTS.md CLAUDE.md; do
+  [ -e "$f" ] && echo "  ! 기존 $f 유지됨 — ~/.h/templates/$f 를 보고 필요한 규칙을 직접 덧붙일 것"
+done
 copy "$H/templates/AGENTS.md" AGENTS.md
 copy "$H/templates/CLAUDE.md" CLAUDE.md
 for f in INTERVIEW DECISIONS REPORT HANDOFF SELF_BRIEF; do copy "$H/templates/$f.md" "docs/$f.md"; done
 copy "$H/scripts/check_data.py" scripts/check_data.py
-for s in data-check cross-review handoff self-brief; do copy "$H/.claude/skills/$s" ".claude/skills/$s"; done
+copy "$H/scripts/envcheck.sh" scripts/envcheck.sh
+for s in data-check cross-review handoff self-brief verify; do
+  copy "$H/.claude/skills/$s" ".claude/skills/$s"
+  copy "$H/.claude/skills/$s" ".agents/skills/$s"   # Codex는 .agents/skills 를 읽는다
+done
+[ -e .gitignore ] || { printf '__pycache__/\n*.pyc\n.env\n.h/\n' > .gitignore; echo "  add   .gitignore"; }
 [ -d .git ] || { git init -q && echo "  git init"; }
-echo "완료. 다음: README/데이터 훑기 → 담당자 인터뷰 → AGENTS.md 빈칸 채우기 → 첫 커밋"
+# 새 샌드박스는 git 사용자 정보가 비어 첫 커밋이 실패한다. 이 폴더에만(--local) 중립값을 둔다.
+git config user.name  >/dev/null || git config --local user.name  "candidate"
+git config user.email >/dev/null || git config --local user.email "candidate@example.invalid"
+echo "완료. 다음: bash scripts/envcheck.sh | tee docs/ENV.md → README/데이터 훑기 → 담당자 인터뷰 → AGENTS.md 빈칸 채우기 → 첫 커밋"
+echo "명령이 헷갈리면: cat ~/.h/CHEATSHEET.md"
