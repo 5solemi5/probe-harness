@@ -30,7 +30,7 @@ git clone이 안 되는 환경이면 `templates/AGENTS.md`의 제목 9개를 기
 | `$verify` | "됐다"고 말하기 전 매번 |
 | `$log` | 결정·AI 결과 판정·담당자 답이 생길 때마다 |
 | `$cross-review` | 첫 동작 버전 이후, 제출 1시간 전 |
-| `$followup-prep` | 제출 30~40분 전 — 예상 질문·근거 수집·재확인 (답은 안 씀) |
+| `$followup-prep` | 제출 30~40분 전 — 예상 질문·근거 수집·재확인. `$followup-prep 답안 포함`이면 확인된 근거로 모범 답안 초안·변형 질문까지 (`docs/FOLLOWUP_QA.md`) |
 | `$submit-gate` | 제출 20~30분 전 |
 | `$handoff` | 세션을 새로 열기 전 |
 | `$self-brief` | 제출 직전, 후속 질문 대비 |
