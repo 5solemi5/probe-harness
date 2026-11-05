@@ -1,27 +1,7 @@
-# 명령 치트시트 (Claude Code · Codex CLI)
+# 명령 치트시트 (Codex CLI)
 
 표기: ✅ 공식 문서에서 확인 / ⚠ 최신 문서 기준, 시험 버전에서 직접 확인 / ❓ 미확인
-시작 직후 30초: `claude --version; codex --version` → 각 도구에서 `/` 를 입력해 명령 목록을 본다.
-
-## Claude Code
-| 할 일 | 명령 | |
-|---|---|---|
-| 시작 / 이어하기 | `claude` / `claude -c` (이 폴더 최근 대화), `/resume` | ✅ |
-| 한 번만 묻기 | `claude -p "질문"` | ✅ |
-| 권한 모드 바꾸기 | `Shift+Tab` (manual → acceptEdits → plan) | ✅ |
-| 계획부터 | `/plan <설명>` | ✅ |
-| 새 대화 / 압축 | `/clear` / `/compact [남길 내용]` | ✅ |
-| 불러온 지침 확인 | `/context` → Memory files에 CLAUDE.md, AGENTS.md | ✅ |
-| 모델·추론 강도 | `/model`, `/effort low\|medium\|high\|max` | ✅ |
-| 변경 보기 / 되돌리기 | `/diff` / `/rewind` | ✅ |
-| 리뷰 | `/review` | ✅ |
-| 스킬 | `/skills`, 새로 만든 스킬은 `/reload-skills` | ✅ |
-| 대화 내보내기 | `/export 파일명` | ✅ |
-| 곁가지 질문 | `/btw <질문>` | ✅ |
-| 셸 명령 바로 실행 | 입력 앞에 `!` | ❓ |
-| 하지 말 것 | `claude update`, `/bug`·`/feedback` (대화 전송), `/login`으로 개인 계정 연결 | |
-
-지침 파일: CLAUDE.md와 AGENTS.md가 둘 다 있으면 Claude는 CLAUDE.md만 읽는다 → CLAUDE.md 안에 `@AGENTS.md` 한 줄로 불러온다 (이 하네스 템플릿이 그렇게 되어 있음).
+시작 직후 30초: `codex --version` → Codex에서 `/` 를 입력해 명령 목록을 본다. `/status`로 모델·권한 확인.
 
 ## Codex CLI (v0.163.0)
 | 할 일 | 명령 | |
@@ -32,7 +12,7 @@
 | 계획 | `/plan [프롬프트]` | ✅ |
 | 새 대화 / 압축 / 상태 | `/new` / `/compact` / `/status` | ✅ |
 | 변경 보기 / 리뷰 | `/diff` / `/review` | ✅ |
-| 스킬 | `/skills` 또는 `$data-check` (`.agents/skills/` 에서 찾음) | ⚠ |
+| 스킬 | `/skills` 또는 `$data-check`, `$verify`, `$log`, `$submit-gate` … (`.agents/skills/` 에서 찾음) | ⚠ |
 | 이어하기 | `/resume`, 셸에서 `codex resume` | ✅ |
 | 비대화 실행 | `codex exec "프롬프트"` — 기본은 **읽기 전용**. 쓰려면 `-s workspace-write` | ✅ |
 | exec 결과 저장 | `-o 파일` | ✅ |
@@ -42,8 +22,12 @@ AGENTS.md는 짧게: 루트부터 현재 폴더까지의 AGENTS.md를 이어 붙
 
 ## 웹 미리보기
 - 서버는 `0.0.0.0:3000` 에 띄운다. `127.0.0.1` 이면 미리보기에 안 보일 수 있다.
-- 확인: `curl -s localhost:3000/health`
-- 오래 도는 서버는 AI 밖 별도 터미널 탭에서 직접 실행한다: `python3 app.py`
+- 확인: `curl -s localhost:3000/healthz` (경로는 AGENTS.md 완료 조건대로)
+- 오래 도는 서버는 AI 밖 별도 터미널 탭에서 직접 실행한다
+
+## Docker
+- `docker build -t app . && docker run --rm -p 3000:3000 --env-file .env app`
+- 빌드가 안 되면 사유를 실행 안내 문서에 기록한다
 - 포트가 이미 쓰이면: `lsof -i :3000` → `kill <PID>`
 
 ## git (증거 남기기)

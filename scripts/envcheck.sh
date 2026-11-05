@@ -2,7 +2,7 @@
 # 환경 기록 (아무것도 수정·설치하지 않음). 사용: bash scripts/envcheck.sh | tee docs/ENV.md
 echo "# ENV $(date '+%F %H:%M %Z')"
 echo "## 도구"
-for c in python3 node git claude codex; do
+for c in python3 node git docker codex; do
   printf -- "- %s: " "$c"
   if command -v "$c" >/dev/null; then "$c" --version 2>&1 | head -1; else echo "없음"; fi
 done
