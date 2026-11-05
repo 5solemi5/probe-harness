@@ -12,7 +12,7 @@ git clone --depth 1 https://github.com/5solemi5/probe-harness ~/.h && bash ~/.h/
 - `AGENTS.md` 뼈대 (목표·절대 규칙·스택·도메인 사실·하드 제약·최적화 기준·역할·작업 규칙·완료 조건)
 - `docs/` 기록 템플릿: INTERVIEW · DECISIONS · VERIFICATION · AI_LOG · HANDOFF · SELF_BRIEF
 - `scripts/check_data.py` CSV 프로파일러, `scripts/envcheck.sh` 환경 기록 (표준 도구만)
-- Codex 스킬 7개(`.agents/skills/`): data-check, verify, log, cross-review, submit-gate, handoff, self-brief
+- Codex 스킬 8개(`.agents/skills/`): data-check, verify, log, cross-review, submit-gate, followup-prep, handoff, self-brief
 - `.gitignore`, 그리고 git 사용자 정보가 비어 있으면 이 폴더에만 중립값 설정
 
 설치 후: `bash scripts/envcheck.sh | tee docs/ENV.md` → 과제 README·데이터 훑기 → 담당자 질문 → AGENTS.md 빈칸 채우기 → 첫 커밋.
@@ -30,6 +30,7 @@ git clone이 안 되는 환경이면 `templates/AGENTS.md`의 제목 9개를 기
 | `$verify` | "됐다"고 말하기 전 매번 |
 | `$log` | 결정·AI 결과 판정·담당자 답이 생길 때마다 |
 | `$cross-review` | 첫 동작 버전 이후, 제출 1시간 전 |
+| `$followup-prep` | 제출 30~40분 전 — 예상 질문·근거 수집·재확인 (답은 안 씀) |
 | `$submit-gate` | 제출 20~30분 전 |
 | `$handoff` | 세션을 새로 열기 전 |
 | `$self-brief` | 제출 직전, 후속 질문 대비 |
@@ -48,7 +49,7 @@ templates/   AGENTS.md INTERVIEW.md DECISIONS.md VERIFICATION.md AI_LOG.md HANDO
              web/ (Dockerfile .dockerignore .env.example)  serve.py test_template.py
 prompts/     위임프롬프트.md  담당자질문은행.md  확인문제_답변틀.md
 scripts/     check_data.py  envcheck.sh
-.agents/skills/  data-check · verify · log · cross-review · submit-gate · handoff · self-brief
+.agents/skills/  data-check · verify · log · cross-review · followup-prep · submit-gate · handoff · self-brief
 ```
 데이터 분석형 과제용 이전 버전은 태그 `v1-data`에 있습니다.
 
