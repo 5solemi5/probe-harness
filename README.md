@@ -15,7 +15,8 @@ git clone --depth 1 https://github.com/5solemi5/probe-harness ~/.h && bash ~/.h/
 - Codex 스킬 8개(`.agents/skills/`): data-check, verify, log, cross-review, submit-gate, followup-prep, handoff, self-brief
 - `.gitignore`, 그리고 git 사용자 정보가 비어 있으면 이 폴더에만 중립값 설정
 
-설치 후: `bash scripts/envcheck.sh | tee docs/ENV.md` → 과제 README·데이터 훑기 → 담당자 질문 → AGENTS.md 빈칸 채우기 → 첫 커밋.
+설치 후 직접 칠 것은 없습니다. `codex`를 실행하고 **`시작`**이라고 입력하면 환경 기록·요구사항 요약·첫 커밋까지 Codex가 합니다.
+이후에도 단어만 입력합니다: `데이터` `골격` `카드 <번호>` `질문` `검증` `커밋` `기록 <내용>` `리뷰` `서버` `도커` `대비` `제출점검` `인수인계` `명령` (AGENTS.md "단축 명령" 표).
 
 필요할 때만 복사:
 - 웹 배포 골격: `cp -n ~/.h/templates/web/{Dockerfile,.dockerignore,.env.example} .`

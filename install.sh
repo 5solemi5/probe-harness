@@ -19,6 +19,6 @@ done
 # 새 샌드박스는 git 사용자 정보가 비어 첫 커밋이 실패한다. 이 폴더에만(--local) 중립값을 둔다.
 git config user.name  >/dev/null || git config --local user.name  "candidate"
 git config user.email >/dev/null || git config --local user.email "candidate@example.invalid"
-echo "완료. 다음: bash scripts/envcheck.sh | tee docs/ENV.md → 과제 README·데이터 훑기 → 담당자 질문 → AGENTS.md 빈칸 직접 채우기 → 첫 커밋"
-echo "웹 골격이 필요하면: cp -n ~/.h/templates/web/{Dockerfile,.dockerignore,.env.example} ."
-echo "프롬프트: cat ~/.h/prompts/위임프롬프트.md   명령: cat ~/.h/CHEATSHEET.md"
+echo ""
+echo "완료. 이제 codex 를 실행하고 /model 에서 Sol 6.1 확인 → '시작' 이라고 입력하세요."
+echo "이후 명령은 외울 필요 없음: 데이터 · 골격 · 카드 · 질문 · 검증 · 커밋 · 기록 · 리뷰 · 서버 · 도커 · 대비 · 제출점검 · 인수인계 · 명령"
